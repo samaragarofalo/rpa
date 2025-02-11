@@ -6,10 +6,11 @@ services:
     depends_on:
       - mongo
     environment:
+      - PYTHONPATH=/rpa
       - MONGO_URI=mongodb://mongo:27017/
     volumes:
-      - .:/app
-    command: python app/main.py
+      - .:/rpa
+    command: python -m rpa.app.main
 
   mongo:
     image: mongo:latest

@@ -4,7 +4,7 @@ from rpa.app.infra.settings import collection
 
 class MongoDBRepository:
     def __init__(self) -> None:
-        pass
+        ...
 
     def insert_data(self, data: list) -> None:
         try:

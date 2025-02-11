@@ -7,6 +7,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.edge.service import Service
 from selenium.webdriver.edge.options import Options
 from webdriver_manager.microsoft import EdgeChromiumDriverManager
+import tempfile
 
 
 class SeleniumScraper:
@@ -14,9 +15,13 @@ class SeleniumScraper:
         self.url = url
 
     def search(self, keywords: str) -> list:
-        service = Service(EdgeChromiumDriverManager().install())
+        temp_profile_dir = tempfile.mkdtemp()
+
         options = Options()
         options.add_argument("--headless")
+        options.add_argument("--no-sandbox")
+
+        service = Service(EdgeChromiumDriverManager().install())
         driver = webdriver.Edge(service=service, options=options)
 
         results = []

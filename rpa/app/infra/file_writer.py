@@ -1,10 +1,12 @@
 import json
 import traceback
+from datetime import datetime
 
 
 def save_results_to_json(results: list, keywords: str) -> None:
     safe_keywords = keywords.replace(" ", "_")
-    file_title = f"resultado_pesquisa_{safe_keywords}.json"
+    hour_minute = datetime.now()
+    file_title = f"resultado_pesquisa_{safe_keywords}_%s%s.json" % (hour_minute.hour, hour_minute.minute)
 
     try:
         with open(file_title, "w", encoding="utf-8") as file:
